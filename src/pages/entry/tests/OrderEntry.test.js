@@ -1,4 +1,4 @@
-import { render, screen, waitFor } from "@testing-library/react";
+import { render, screen, waitFor } from "../../../test-utils/testing-library-utils";
 import OrderEntry from "../OrderEntry";
 import { rest } from "msw";
 import { server } from "../../../mocks/server";
@@ -14,7 +14,7 @@ test.only("handles error for scoops and toppings routes", async () => {
   );
 
   render(<OrderEntry />);
-  // wait for allows to wait for all to resolve
+  // waitFor allows to wait for all to resolve. FindBy gets the first that resolves
   await waitFor(async () => {
     const alerts = await screen.findAllByRole("alert");
     expect(alerts).toHaveLength(2);
